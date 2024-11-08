@@ -64,6 +64,8 @@ button:disabled {
   background-color: white;
   border-radius: 50%;
   visibility: hidden;
+  align-self: center;
+  justify-self: center;
 }
 
 /* 點數位置與顯示 */
