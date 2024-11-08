@@ -46,16 +46,13 @@ button:disabled {
 .dice {
   width: 100px;
   height: 100px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 5px;
-  margin: 10px;
+  position: relative;
   border: 4px solid black;
   background-color: black;
-  position: relative;
   border-radius: 5px;
-  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 骰子點數樣式 */
@@ -64,29 +61,5 @@ button:disabled {
   height: 20px;
   background-color: white;
   border-radius: 50%;
-  visibility: hidden;
-  align-self: center;
-  justify-self: center;
-  z-index: 1;
-}
-
-/* 點數位置與顯示 */
-.dice-1 .dot:nth-child(5) { visibility: visible; }
-.dice-2 .dot:nth-child(1), .dice-2 .dot:nth-child(9) { visibility: visible; }
-.dice-3 .dot:nth-child(1), .dice-3 .dot:nth-child(5), .dice-3 .dot:nth-child(9) { visibility: visible; }
-.dice-4 .dot:nth-child(1), .dice-4 .dot:nth-child(3), .dice-4 .dot:nth-child(7), .dice-4 .dot:nth-child(9) { visibility: visible; }
-.dice-5 .dot:nth-child(1), .dice-5 .dot:nth-child(3), .dice-5 .dot:nth-child(5), .dice-5 .dot:nth-child(7), .dice-5 .dot:nth-child(9) { visibility: visible; }
-.dice-6 .dot:nth-child(1), .dice-6 .dot:nth-child(3), .dice-6 .dot:nth-child(4), .dice-6 .dot:nth-child(6), .dice-6 .dot:nth-child(7), .dice-6 .dot:nth-child(9) { visibility: visible; }
-
-/* 動畫效果 */
-.shaking {
-  animation: shake 0.5s ease-in-out;
-}
-
-@keyframes shake {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(-10deg); }
-  50% { transform: rotate(10deg); }
-  75% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
+  position: absolute;
 }
