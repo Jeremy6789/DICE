@@ -1,61 +1,78 @@
-// 獲取 DOM 元素
-const playerDice1 = document.getElementById("player-dice-1");
-const playerDice2 = document.getElementById("player-dice-2");
-const hostDice1 = document.getElementById("host-dice-1");
-const hostDice2 = document.getElementById("host-dice-2");
-const playerScore = document.getElementById("player-score");
-const hostScore = document.getElementById("host-score");
-const message = document.getElementById("message");
-const rollButton = document.getElementById("roll-button");
+// 點數位置對應表
+const dotPositions = {
+  1: [[50, 50]],
+  2: [[30, 30], [70, 70]],
+  3: [[30, 30], [50, 50], [70, 70]],
+  4: [[30, 30], [30, 70], [70, 30], [70, 70]],
+  5: [[30, 30], [30, 70], [50, 50], [70, 30], [70, 70]],
+  6: [[30, 30], [30, 50], [30, 70], [70, 30], [70, 50], [70, 70]]
+};
 
-// 隨機生成點數 (1 到 6)
+// 隨機生成點數
 function randomDice() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
-// 更新骰子樣式
-function updateDice(diceElement, value) {
-  diceElement.className = "dice"; // 移除先前的 class
-  diceElement.classList.add(`dice-${value}`);
+// 清除現有的白點
+function clearDots(diceElement) {
+  diceElement.innerHTML = '';
 }
 
-// 更新分數和訊息
-function updateScore(playerTotal, hostTotal) {
-  playerScore.textContent = `總分：${playerTotal}`;
-  hostScore.textContent = `總分：${hostTotal}`;
+// 創建骰子並顯示白點
+function createDice(value) {
+  const dice = document.createElement('div');
+  dice.className = 'dice';
 
-  if (playerTotal > hostTotal) {
-    message.textContent = "恭喜你贏了！";
-  } else if (playerTotal < hostTotal) {
-    message.textContent = "很可惜你輸了~";
-  } else {
-    message.textContent = "平手！再試一次~";
-  }
+  // 根據點數生成白點
+  dotPositions[value].forEach(([top, left]) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    dot.style.top = `${top}%`;
+    dot.style.left = `${left}%`;
+    dice.appendChild(dot);
+  });
+
+  return dice;
 }
 
-// 擲骰子按鈕事件
-rollButton.addEventListener("click", () => {
-  rollButton.disabled = true; // 禁用按鈕，防止重複點擊
+// 投擲骰子功能
+function rollDice() {
+  const playerDiceContainer = document.getElementById('playerDice');
+  const hostDiceContainer = document.getElementById('hostDice');
+  const playerScoreElement = document.getElementById('playerScore');
+  const hostScoreElement = document.getElementById('hostScore');
+  const messageElement = document.getElementById('message');
 
-  // 產生隨機點數
+  // 清除骰子容器中的內容
+  playerDiceContainer.innerHTML = '';
+  hostDiceContainer.innerHTML = '';
+
+  // 生成新的點數
   const playerDiceValues = [randomDice(), randomDice()];
   const hostDiceValues = [randomDice(), randomDice()];
 
-  // 更新骰子樣式
-  updateDice(playerDice1, playerDiceValues[0]);
-  updateDice(playerDice2, playerDiceValues[1]);
-  updateDice(hostDice1, hostDiceValues[0]);
-  updateDice(hostDice2, hostDiceValues[1]);
+  // 顯示玩家的骰子
+  let playerTotal = 0;
+  playerDiceValues.forEach(value => {
+    playerTotal += value;
+    playerDiceContainer.appendChild(createDice(value));
+  });
+  playerScoreElement.textContent = `總分：${playerTotal}`;
 
-  // 計算總分
-  const playerTotal = playerDiceValues[0] + playerDiceValues[1];
-  const hostTotal = hostDiceValues[0] + hostDiceValues[1];
+  // 顯示關主的骰子
+  let hostTotal = 0;
+  hostDiceValues.forEach(value => {
+    hostTotal += value;
+    hostDiceContainer.appendChild(createDice(value));
+  });
+  hostScoreElement.textContent = `總分：${hostTotal}`;
 
-  // 更新分數和訊息
-  updateScore(playerTotal, hostTotal);
-
-  // 等待動畫結束後啟用按鈕
-  setTimeout(() => {
-    rollButton.disabled = false;
-  }, 1000);
-});
+  // 判定勝負
+  if (playerTotal > hostTotal) {
+    messageElement.textContent = "恭喜你贏了！";
+  } else if (playerTotal < hostTotal) {
+    messageElement.textContent = "很可惜你輸了~";
+  } else {
+    messageElement.textContent = "平手！再試一次~";
+  }
+}
