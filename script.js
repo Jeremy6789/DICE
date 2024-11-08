@@ -1,4 +1,3 @@
-// 點數位置對應表
 const dotPositions = {
   1: [[50, 50]],
   2: [[30, 30], [70, 70]],
@@ -13,11 +12,6 @@ function randomDice() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
-// 清除現有的白點
-function clearDots(diceElement) {
-  diceElement.innerHTML = '';
-}
-
 // 創建骰子並顯示白點
 function createDice(value) {
   const dice = document.createElement('div');
@@ -27,6 +21,7 @@ function createDice(value) {
   dotPositions[value].forEach(([top, left]) => {
     const dot = document.createElement('div');
     dot.className = 'dot';
+    dot.style.position = 'absolute'; // 確保點位置
     dot.style.top = `${top}%`;
     dot.style.left = `${left}%`;
     dice.appendChild(dot);
