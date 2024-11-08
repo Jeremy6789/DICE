@@ -55,6 +55,7 @@ button:disabled {
   background-color: black;
   position: relative;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 /* 骰子點數樣式 */
@@ -66,6 +67,7 @@ button:disabled {
   visibility: hidden;
   align-self: center;
   justify-self: center;
+  z-index: 1;
 }
 
 /* 點數位置與顯示 */
