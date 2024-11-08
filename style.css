@@ -6,15 +6,15 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  background-color: #f0f0f0;  /* 選擇淡灰背景，讓頁面看起來更清爽 */
+  background-color: #f0f0f0;
 }
 
 .game-container {
   text-align: center;
   padding: 20px;
-  background-color: white;  /* 背景白色 */
+  background-color: white;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 400px;
   max-width: 100%;
 }
@@ -25,15 +25,15 @@ button {
   font-size: 16px;
   margin-top: 20px;
   cursor: pointer;
-  background-color: #333;  /* 按鈕深色背景 */
+  background-color: #333;
   color: white;
   border: none;
   border-radius: 10px;
-  transition: background-color 0.3s;  /* 按鈕滑鼠移過的動畫效果 */
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #555;  /* 滑鼠懸停變色 */
+  background-color: #555;
 }
 
 button:disabled {
@@ -73,16 +73,12 @@ button:disabled {
   background-color: white;
   border-radius: 50%;
   position: absolute;
+  transform: translate(-50%, -50%); /* 確保點數居中 */
 }
 
 /* 頭條文字的樣式 */
 h1, h2, h3 {
   color: #333;
-}
-
-/* 添加一些間距 */
-h1 {
-  margin-bottom: 20px;
 }
 
 /* 文字顯示 */
