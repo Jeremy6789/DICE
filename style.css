@@ -1,0 +1,88 @@
+/* 頁面全局樣式 */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.game-container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* 按鈕樣式 */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+button:disabled {
+  background-color: grey;
+}
+
+/* 骰子容器與分數區域樣式 */
+.dice-container {
+  margin: 20px;
+  text-align: center;
+}
+
+.dice-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 骰子樣式 */
+.dice {
+  width: 100px;
+  height: 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+  margin: 10px;
+  border: 4px solid black;
+  background-color: black;
+  position: relative;
+  border-radius: 5px;
+}
+
+/* 骰子點數樣式 */
+.dot {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  visibility: hidden;
+}
+
+/* 點數位置與顯示 */
+.dice-1 .dot:nth-child(5) { visibility: visible; }
+.dice-2 .dot:nth-child(1), .dice-2 .dot:nth-child(9) { visibility: visible; }
+.dice-3 .dot:nth-child(1), .dice-3 .dot:nth-child(5), .dice-3 .dot:nth-child(9) { visibility: visible; }
+.dice-4 .dot:nth-child(1), .dice-4 .dot:nth-child(3), .dice-4 .dot:nth-child(7), .dice-4 .dot:nth-child(9) { visibility: visible; }
+.dice-5 .dot:nth-child(1), .dice-5 .dot:nth-child(3), .dice-5 .dot:nth-child(5), .dice-5 .dot:nth-child(7), .dice-5 .dot:nth-child(9) { visibility: visible; }
+.dice-6 .dot:nth-child(1), .dice-6 .dot:nth-child(3), .dice-6 .dot:nth-child(4), .dice-6 .dot:nth-child(6), .dice-6 .dot:nth-child(7), .dice-6 .dot:nth-child(9) { visibility: visible; }
+
+/* 動畫效果 */
+.shaking {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
