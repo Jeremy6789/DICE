@@ -6,11 +6,17 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
+  background-color: #f0f0f0;  /* 選擇淡灰背景，讓頁面看起來更清爽 */
 }
 
 .game-container {
   text-align: center;
   padding: 20px;
+  background-color: white;  /* 背景白色 */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */
+  width: 400px;
+  max-width: 100%;
 }
 
 /* 按鈕樣式 */
@@ -19,10 +25,15 @@ button {
   font-size: 16px;
   margin-top: 20px;
   cursor: pointer;
-  background-color: black;
+  background-color: #333;  /* 按鈕深色背景 */
   color: white;
   border: none;
   border-radius: 10px;
+  transition: background-color 0.3s;  /* 按鈕滑鼠移過的動畫效果 */
+}
+
+button:hover {
+  background-color: #555;  /* 滑鼠懸停變色 */
 }
 
 button:disabled {
@@ -31,7 +42,7 @@ button:disabled {
 
 /* 骰子容器與分數區域樣式 */
 .dice-container {
-  margin: 20px;
+  margin: 20px 0;
   text-align: center;
 }
 
@@ -62,4 +73,22 @@ button:disabled {
   background-color: white;
   border-radius: 50%;
   position: absolute;
+}
+
+/* 頭條文字的樣式 */
+h1, h2, h3 {
+  color: #333;
+}
+
+/* 添加一些間距 */
+h1 {
+  margin-bottom: 20px;
+}
+
+/* 文字顯示 */
+#message {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
 }
